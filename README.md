@@ -1,6 +1,11 @@
 # leach-et-al-2021
 Recreate examples in FaIR2.0.0 paper
 
+## Getting this working
+Clone the repository, navigate to the `leach-et-al-2021` directory and run
+
+    pip install -r REQUIREMENTS.txt
+
 ## Notebooks
 These notebooks are listed in the approximate order they should be run in to generate all the data files and parameter sets required to fully carry out all the analyses within the paper. Figures and tables as they appear in the paper are listed after each description.
 
