@@ -1,0 +1,6 @@
+git+git://github.com/chrisroadmap/FAIR@2alpha#egg=fair
+jupyter
+numpy
+pandas
+scipy
+seaborn
