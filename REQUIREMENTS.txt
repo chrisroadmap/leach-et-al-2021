@@ -1,4 +1,4 @@
-git+git://github.com/chrisroadmap/FAIR@2alpha#egg=fair
+git+git://github.com/chrisroadmap/FAIR@v2.0.0-alpha#egg=fair
 jupyter
 numpy
 pandas
