@@ -1,7 +1,14 @@
+dask[complete]
 git+git://github.com/chrisroadmap/FAIR@v2.0.0-alpha#egg=fair
 jupyter
+netcdf4
 numpy
+openpyxl
 pandas
+PyPDF2
+requests
 scipy
 seaborn
+statsmodels
+tables
 xarray

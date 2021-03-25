@@ -1,29 +1,46 @@
 # leach-et-al-2021
 Recreate examples in FaIR2.0.0 paper
 
-## Getting this working
-Clone the repository, navigate to the `leach-et-al-2021` directory and run
+## Reproducibility
+With two exceptions, Python/Jupyter is used for everything. Firstly, clone the repository, navigate to the `leach-et-al-2021` directory and run
 
     pip install -r REQUIREMENTS.txt
+    
+Run the `setup.sh` script to download the auxiliary data (3.0 GB) and set up the necessary output directories:
+
+    ./setup.sh
+
+One script uses the `EBM` library written in `R`. This tunes the FaIRv2.0.0 parameters to CMIP6 climate respose using [Cummins et al., 2020 MLE methodology](http://journals.ametsoc.org/doi/10.1175/JCLI-D-19-0589.1). Then everything else is produced in the Jupyter notebooks (`notebooks` directory).
+
+## R script
+
+Open an R prompt and run
+
+    install.packages("devtools")
+    devtools::install_github("donaldcummins/EBM")
+
+This is run simply by
+
+    cd r_scripts/parameter-tuning
+    Rscript CMIP6-climresp_Cummins.R
 
 ## Notebooks
 These notebooks are listed in the approximate order they should be run in to generate all the data files and parameter sets required to fully carry out all the analyses within the paper. Figures and tables as they appear in the paper are listed after each description.
 
-| /path/to/notebook.ipynb  | description |
-| ------------- | ------------- |
-| /notebooks/example-nb.ipynb  | Demonstration of FaIRv2.0.0-alpha I/O formats, plus some examples of how to run experiments.  |
-| /notebooks/parameter-tuning/CMIP6-aerosol.ipynb  | Tuning FaIRv2.0.0 parameters to CMIP6 aerosol forcing from RFMIP. *Fig5, Tab4*  |
-| /notebooks/parameter-tuning/CMIP6-cc.ipynb  | Tuning FaIRv2.0.0 parameters to CMIP6 ESMs from C4MIP. *Fig4, Tab3*  |
-| /notebooks/parameter-tuning/CMIP6-climresp_Cummins.ipynb  | Tuning FaIRv2.0.0 parameters to CMIP6 climate respose using [Cummins et al., 2020 MLE methodology](http://journals.ametsoc.org/doi/10.1175/JCLI-D-19-0589.1). R language notebook.  |
-| /notebooks/parameter-tuning/CMIP6-climresp-results.ipynb  | Examining tuned climate response parameters from `CMIP6-climresp_Cummins`. *Fig3, Tab2, TabS5*  |
-| /notebooks/parameter-tuning/default-parameters.ipynb  | Tunes or sets the default model parameter set.  |
-| /notebooks/parameter-tuning/default-experiment-metrics.ipynb  | Carries out a suite of experiments for the default parameter set, and computes associated metrics. *Fig2, FigS2, FigS3, TabS2, TabS3* |
-| /notebooks/perturbed-parameter-ensemble/FULL-compute.ipynb  | Creates a large parameter ensemble (FULL) & generates key metrics for each member over the SSPs.  |
-| /notebooks/perturbed-parameter-ensemble/global-warming-index.ipynb  | Generate an estimate of the present-day Global Warming Index, and associated FULL ensemble selection probabilities. |
-| /notebooks/perturbed-parameter-ensemble/FULL-constrain.ipynb  | Constrains the FULL ensemble using the GWI-based selection probabilities, and explores the implications. *Fig6, Fig7, Tab7, Tab8, Tab9, Tab10, TabS6* |
-| /notebooks/perturbed-parameter-ensemble/DECK-simulations.ipynb  | Carries out some basic CMIP6 experiments (abrupt-4xCO2 & 1pctCO2) for the FULL and CONSTRAINED ensembles. *Fig8* |
-| /notebooks/perturbed-parameter-ensemble/SSP-simulations.ipynb  | Carries out simulations of the SSPs for the CONSTRAINED ensemble. *Fig9, Fig10, TabS4* |
-| /notebooks/RCMIP/RCMIP-experiments.ipynb  | Carries out simulations submitted to [RCMIP phase II](http://www.essoar.org/doi/10.1002/essoar.10504793.1). |
+| order | /path/to/notebook  | description |
+| ----- | ------------- | ------------- |
+| 1 | /notebooks/example-nb.ipynb  | Demonstration of FaIRv2.0.0-alpha I/O formats, plus some examples of how to run experiments.  |
+| 2 | /notebooks/parameter-tuning/CMIP6-aerosol.ipynb  | Tuning FaIRv2.0.0 parameters to CMIP6 aerosol forcing from RFMIP. *Fig5, Tab4*  |
+| 3 | /notebooks/parameter-tuning/CMIP6-cc.ipynb  | Tuning FaIRv2.0.0 parameters to CMIP6 ESMs from C4MIP. *Fig4, Tab3*  |
+| 4 | /notebooks/parameter-tuning/CMIP6-climresp-results.ipynb  | Examining tuned climate response parameters from `CMIP6-climresp_Cummins`. *Fig3, Tab2, TabS5*  |
+| 5 | /notebooks/parameter-tuning/default-experiment-metrics.ipynb  | Carries out a suite of experiments for the default parameter set, and computes associated metrics. *Fig2, FigS2, FigS3, TabS2, TabS3* |
+| 6 | /notebooks/perturbed-parameter-ensemble/FULL-compute.ipynb  | Creates a large parameter ensemble (FULL) & generates key metrics for each member over the SSPs.  |
+| 7 | /notebooks/perturbed-parameter-ensemble/global-warming-index.ipynb  | Generate an estimate of the present-day Global Warming Index, and associated FULL ensemble selection probabilities. |
+| 8 | /notebooks/perturbed-parameter-ensemble/FULL-constrain.ipynb  | Constrains the FULL ensemble using the GWI-based selection probabilities, and explores the implications. *Fig6, Fig7, Tab7, Tab8, Tab9, Tab10, TabS6* |
+| 9 | /notebooks/parameter-tuning/default-parameters.ipynb  | Tunes or sets the default model parameter set.  |
+| 10 | /notebooks/perturbed-parameter-ensemble/DECK-simulations.ipynb  | Carries out some basic CMIP6 experiments (abrupt-4xCO2 & 1pctCO2) for the FULL and CONSTRAINED ensembles. *Fig8* |
+| 11 | /notebooks/perturbed-parameter-ensemble/SSP-simulations.ipynb  | Carries out simulations of the SSPs for the CONSTRAINED ensemble. *Fig9, Fig10, TabS4* |
+| 12 | /notebooks/RCMIP/RCMIP-experiments.ipynb  | Carries out simulations submitted to [RCMIP phase II](http://www.essoar.org/doi/10.1002/essoar.10504793.1). |
 
 ## Auxiliary data files
 There are also a number of auxiliary data files and directories within this repo. Some are excluded from the repo due to limitations on file sizes, but all are described below.
